@@ -1,0 +1,30 @@
+﻿@model Core.ViewModels.StudentCourseViewModel
+
+@Model.student.Name
+
+
+@*@Html.DropDownListFor(model => model.CourseId, ViewBag.courses as SelectList, new { @class = "form-control" })*@
+
+
+
+<div class="form-actions no-color">
+
+   @* @Html.DropDownListFor(model => model.CourseId, ViewBag.courses as SelectList, new { @class = "form-control" })*@
+
+    @using (Html.BeginForm("AssignConfirm", "Students", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.DropDownListFor(model => model.CourseId, ViewBag.courses as SelectList, new { @class = "form-control" })
+
+        @Html.Hidden("id", Model.student.ID)
+        @Html.Hidden("courseId", Model.CourseId)
+
+
+        <input type="submit" value="Assign" class="btn btn-default" /> 
+@Html.ActionLink("Back to List", "Index");
+
+}
+
+    @Html.ActionLink("Back to List", "Index")
+</div>
+}
